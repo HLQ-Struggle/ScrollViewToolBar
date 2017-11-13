@@ -4,7 +4,6 @@ package com.scrollviewtoolbar.listener;
  * Created by HLQ on 2017/11/13
  * 透明度回调监听
  */
-
 public interface TranslucentListener {
 
     /**

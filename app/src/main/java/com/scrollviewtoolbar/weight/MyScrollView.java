@@ -2,12 +2,13 @@ package com.scrollviewtoolbar.weight;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ScrollView;
 
 import com.scrollviewtoolbar.listener.TranslucentListener;
 
 /**
- * Created by HLQ on 2017/11/13 0013.
+ * Created by HLQ on 2017/11/13
  */
 
 public class MyScrollView extends ScrollView {
@@ -42,8 +43,13 @@ public class MyScrollView extends ScrollView {
             int scrollY = getScrollY();
             // 获取屏幕高度
             int screenHeight = getContext().getResources().getDisplayMetrics().heightPixels;
-            if (scrollY <= screenHeight / 3f) {
+            // 这里定义的规则 也就是有效滑动距离为屏幕2分之一
+            if (scrollY <= screenHeight / 2f) {
+                Log.e("HLQ_Struggle", "ScrollView划出高度：" + scrollY);
+                Log.e("HLQ_Struggle", "screenHeight：" + screenHeight);
+                Log.e("HLQ_Struggle", "alpha：" + (1 - scrollY / (screenHeight / 3f)));
                 // alpha = 滑动高度/（screenHeight/3f）
+                // 渐变的过程 1~0
                 mTranslucentListener.onTranslucent(1 - scrollY / (screenHeight / 3f));
             }
         }
